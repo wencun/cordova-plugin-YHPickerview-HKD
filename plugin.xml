@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="YHPickerview" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>YHPickerview</name>
+    <js-module name="YHPickerview" src="www/YHPickerview.js">
+        <clobbers target="navagator.YHPickerview"/>
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="YHPickerview">
+                <param name="ios-package" value="YHPickerview"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/YHPickerview.h" />
+        <source-file src="src/ios/YHPickerview.m"/>
+
+        <header-file src="src/ios/PickView.h" />
+        <source-file src="src/ios/PickView.m"/>
+        
+        <header-file src="src/ios/PopViewController.h" />
+        <source-file src="src/ios/PopViewController.m"/>
+
+        <resource-file src="src/ios/n_pick_cancle@2x.png" target="/" />
+        <resource-file src="src/ios/n_pick_add@2x.png" target="/" />
+
+        <resource-file src="src/ios/province.json" target="/" />
+    </platform>
+</plugin>

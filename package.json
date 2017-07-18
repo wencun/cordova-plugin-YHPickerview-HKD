@@ -1,0 +1,32 @@
+{
+  "name": "com.yhloan.YHPickerview",
+  "version": "1.0.0",
+  "description": "cordova plugin with ios pickerview.",
+  "cordova": {
+    "id": "com.yhloan.YHPickerview",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wencun/YHPickerview.git"
+  },
+  "keywords": [
+    "cordova",
+    "pickerview",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=1.0.0"
+    }
+  ],
+  "author": "wencun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhuifeng1017/YHPickerview/issues"
+  },
+  "homepage": "https://github.com/zhuifeng1017/YHPickerview/blob/master/README.md"
+}
