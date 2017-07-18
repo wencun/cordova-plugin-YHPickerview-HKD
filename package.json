@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wencun/YHPickerview.git"
+    "url": "git+https://github.com/wencun/cordova-plugin-YHPickerview-HKD.git"
   },
   "keywords": [
     "cordova",
@@ -26,7 +26,7 @@
   "author": "wencun",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhuifeng1017/YHPickerview/issues"
+    "url": "https://github.com/wencun/cordova-plugin-YHPickerview-HKD/issues"
   },
-  "homepage": "https://github.com/zhuifeng1017/YHPickerview/blob/master/README.md"
+  "homepage": "https://github.com/wencun/cordova-plugin-YHPickerview-HKD/blob/master/README.md"
 }
