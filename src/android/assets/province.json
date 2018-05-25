@@ -1,6 +1,7 @@
 [{
 		"options": [{
-			"options": [{
+			"options": [
+        {
 					"labelCode": "0100101",
 					"regionLevel": "3",
 					"labelName": "东城区",

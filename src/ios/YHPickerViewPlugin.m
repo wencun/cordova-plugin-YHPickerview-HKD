@@ -4,13 +4,13 @@
 //
 //  Created by ZhaoMin/278269606@qq.com on 17/5/10.
 //  Copyright © 2016年 ZhaoMin.  All rights reserved.
-//
+//  参考：https://www.showdoc.cc/web/#/24561575291882?page_id=144830219081919
 
 
-#import "YHPickerview.h"
+#import "YHPickerViewPlugin.h"
 #import "PopViewController.h"
 
-@interface YHPickerview()<PopDelegate>
+@interface YHPickerViewPlugin()<PopDelegate>
 
 @property (strong, nonatomic)YHPickerviewParams *param;
 @property (strong, nonatomic) NSMutableArray *curSelected;
@@ -19,15 +19,15 @@
 
 @end
 
-@implementation YHPickerview
+@implementation YHPickerViewPlugin
 
 -(void)showPicker:(CDVInvokedUrlCommand*)command{
     
     NSDictionary *dict  = [command argumentAtIndex:0 withDefault:nil];
     if (dict) {
         YHPickerviewParams *param = [[YHPickerviewParams alloc] init];
-        param.isProvinceCity = [dict[@"isProvinceCity"] boolValue];
-        if (param.isProvinceCity) {
+        param.pickerId = dict[@"pickerId"];
+        if ([param.pickerId isEqualToString:@"picker3"]) {//表示城市
             NSString *resPath = [[NSBundle mainBundle] pathForResource:@"province" ofType:@"json"];
             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:resPath] options:NSJSONReadingMutableContainers error:nil];
             param.pickerId = @"";//dict[@"pickerId"];
@@ -70,24 +70,24 @@
 }
 
 -(void)hidePicker:(CDVInvokedUrlCommand*)command{
-//    if (_containerPickView) {
-//        [self _hidePicker];
-//    }
+    //    if (_containerPickView) {
+    //        [self _hidePicker];
+    //    }
     
     _callbackId = nil;
 }
 
 -(void)destoryPicker:(CDVInvokedUrlCommand*)command{
-//    if (_containerPickView) {
-//        [UIView animateWithDuration:0.2 animations:^{
-//            _containerPickView.frame = (CGRect){0,APP_SCREEN_HEIGHT, APP_SCREEN_WIDTH, 206};
-//        } completion:^(BOOL finished) {
-//            [_pickView removeFromSuperview];
-//            [_containerPickView removeFromSuperview];
-//            _pickView = nil;
-//            _containerPickView = nil;
-//        }];
-//    }
+    //    if (_containerPickView) {
+    //        [UIView animateWithDuration:0.2 animations:^{
+    //            _containerPickView.frame = (CGRect){0,APP_SCREEN_HEIGHT, APP_SCREEN_WIDTH, 206};
+    //        } completion:^(BOOL finished) {
+    //            [_pickView removeFromSuperview];
+    //            [_containerPickView removeFromSuperview];
+    //            _pickView = nil;
+    //            _containerPickView = nil;
+    //        }];
+    //    }
     
     _callbackId = nil;
 }
@@ -98,3 +98,4 @@
 }
 
 @end
+

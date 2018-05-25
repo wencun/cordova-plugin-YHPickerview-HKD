@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.view.layer.borderWidth = 2;
+    //    self.view.layer.borderWidth = 2;
     self.view.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.5];
     [self createPicker];
     [self _showPicker];
@@ -41,7 +41,7 @@
  */
 - (void)viewWillLayoutSubviews {
     
-//    self.view.frame = CGRectMake(self.view.frame.origin.x, 80, APP_SCREEN_WIDTH, APP_SCREEN_HEIGHT - 80);
+    //    self.view.frame = CGRectMake(self.view.frame.origin.x, 80, APP_SCREEN_WIDTH, APP_SCREEN_HEIGHT - 80);
     //self.view.backgroundColor = [UIColor clearColor];
     //self.view.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.868f];
 }
@@ -115,15 +115,14 @@
 -(void)toolBarDoneClick:(id)sender
 {
     NSArray *selectedTextArray = nil;
-    NSArray *selectedIDArray = nil;
-    NSMutableArray *optionCodes = [NSMutableArray array];
+    NSArray *selectedIDArray = [NSMutableArray array];
     switch (self.param.depth) {
         case 1:
         {
             NSString *title = [self pickerView:_pickView titleForRow:[_curSelected[0] intValue] forComponent:0];
             selectedTextArray = @[title];
             NSDictionary *optionDict = self.param.options[[_curSelected[0] intValue]];
-            NSString *titleId = [optionDict objectForKey:@"options"];
+            NSString *titleId = [optionDict objectForKey:@"labelCode"];
             selectedIDArray = @[titleId];
         }
             break;
@@ -133,9 +132,8 @@
             NSString *title2 = [self pickerView:_pickView titleForRow:[_curSelected[1] intValue] forComponent:1];
             
             int selectedIndex = [_curSelected[0] intValue];
-            [optionCodes addObject:[self.param.options[selectedIndex] objectForKey:@"code"]];
-            [optionCodes addObject:[self.param.options[selectedIndex][@"options"][[_curSelected[1] intValue]] objectForKey:@"code"]];
-            
+            selectedIDArray = @[[self.param.options[selectedIndex] objectForKey:@"labelCode"],
+                                [self.param.options[selectedIndex][@"options"][[_curSelected[1] intValue]] objectForKey:@"labelCode"]];
             
             selectedTextArray = @[title1, title2?:@""];
         }
@@ -147,6 +145,11 @@
             NSString *title2 = [self pickerView:_pickView titleForRow:[_curSelected[1] intValue] forComponent:1];
             NSString *title3 = [self pickerView:_pickView titleForRow:[_curSelected[2] intValue] forComponent:2];
             selectedTextArray = @[title1, title2?:@"", title3?:@""];
+            
+            selectedIDArray = @[[self.param.options[[_curSelected[0] intValue]] objectForKey:@"labelCode"],
+                                [self.param.options[[_curSelected[0] intValue]][@"options"][[_curSelected[1] intValue]] objectForKey:@"labelCode"],
+                                [self.param.options[[_curSelected[0] intValue]][@"options"][[_curSelected[1] intValue]][@"options"][[_curSelected[2] intValue]] objectForKey:@"labelCode"]
+                                ];
         }
             break;
     }
@@ -155,13 +158,11 @@
     [resultDict setObject:self.param.pickerId forKey:@"pickerId"];
     [resultDict setObject:selectedTextArray forKey:@"selectedTextArray"];
     [resultDict setObject:[_curSelected copy] forKey:@"selectedIndexArray"];
-    if (optionCodes) {
-        [resultDict setObject:optionCodes forKey:@"optionCodes"];
-    }
+    
     if (selectedIDArray) {
         [resultDict setObject:selectedIDArray forKey:@"selectedIDArray"];
     }
-//    [self sendResult:resultDict];
+    //    [self sendResult:resultDict];
     
     //[self _hidePicker];
     [self.delegate popCallback:resultDict];
@@ -170,7 +171,7 @@
 -(void)toolBarCanelClick:(id)sender
 {
     //[self _hidePicker];
-//    [self destoryPicker:nil];
+    //    [self destoryPicker:nil];
     [self dismissVC];
 }
 
@@ -203,10 +204,10 @@
 {
     NSString *title = nil;
     if (component==0) {
-        title = [self.param.options[row] objectForKey:@"text"];
+        title = [self.param.options[row] objectForKey:@"labelName"];
     }else if (component==1){
         int selectedIndex = [_curSelected[0] intValue];
-        title = [self.param.options[selectedIndex][@"options"][row] objectForKey:@"text"];
+        title = [self.param.options[selectedIndex][@"options"][row] objectForKey:@"labelName"];
     }else if (component==2){
         int selectedIndex0 = [_curSelected[0] intValue];
         int selectedIndex1 = [_curSelected[1] intValue];
@@ -214,7 +215,7 @@
         if([component1Array[selectedIndex1][@"options"][row] isKindOfClass:[NSString class]]){
             title = component1Array[selectedIndex1][@"options"][row];
         }else{
-            title = [component1Array[selectedIndex1][@"options"][row] objectForKey:@"text"];
+            title = [component1Array[selectedIndex1][@"options"][row] objectForKey:@"labelName"];
         }
         
     }
@@ -264,3 +265,4 @@
 
 
 @end
+

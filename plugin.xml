@@ -1,28 +1,100 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="YHPickerview" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>YHPickerview</name>
-    <js-module name="YHPickerview" src="www/YHPickerview.js">
-        <clobbers target="navagator.YHPickerview"/>
+<plugin id="cordova-plugin-yhpickerview" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>YHPickerViewPlugin</name>
+    <js-module name="YHPickerViewPlugin" src="www/YHPickerViewPlugin.js">
+        <clobbers target="cordova.plugins.YHPickerViewPlugin" />
     </js-module>
-    <platform name="ios">
-        <config-file parent="/*" target="config.xml">
-            <feature name="YHPickerview">
-                <param name="ios-package" value="YHPickerview"/>
-            </feature>
-        </config-file>
+	
+	 <platform name="android">  
+        <config-file target="res/xml/config.xml" parent="/*">  
+            <feature name="YHPickerViewPlugin">  
+                <param name="android-package" value="com.picker.yhck.YHPickerViewPlugin"/>  
+            </feature>  
+        </config-file>  
 
-        <header-file src="src/ios/YHPickerview.h" />
-        <source-file src="src/ios/YHPickerview.m"/>
+       <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			    <activity 
+				android:name="com.picker.yhck.ShowActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:screenOrientation="portrait"
+                android:theme="@style/myTransparent" />
+       </config-file>
+		
+		<source-file src="src/android/YHPickerViewPlugin.java" target-dir="src/com/picker/yhck"/>  
+		<source-file src="src/android/ShowActivity.java" target-dir="src/com/picker/yhck"/> 
+		
+		<source-file src="src/android/bean/GetJsonDataUtil.java" target-dir="src/com/picker/yhck/bean"/>
+		<source-file src="src/android/bean/JsonBean.java" target-dir="src/com/picker/yhck/bean"/>
+		<source-file src="src/android/bean/JsonClassDean.java" target-dir="src/com/picker/yhck/bean"/>
 
-        <header-file src="src/ios/PickView.h" />
-        <source-file src="src/ios/PickView.m"/>
-        
-        <header-file src="src/ios/PopViewController.h" />
-        <source-file src="src/ios/PopViewController.m"/>
+		
+		<source-file src="src/android/pickerview/adapter/ArrayWheelAdapter.java" target-dir="src/com/picker/yhck/pickerview/adapter"/>
+		<source-file src="src/android/pickerview/adapter/NumericWheelAdapter.java" target-dir="src/com/picker/yhck/pickerview/adapter"/>
+		<source-file src="src/android/pickerview/adapter/WheelAdapter.java" target-dir="src/com/picker/yhck/pickerview/adapter"/>
+		
+		<source-file src="src/android/pickerview/lib/InertiaTimerTask.java" target-dir="src/com/picker/yhck/pickerview/lib"/>
+		<source-file src="src/android/pickerview/lib/LoopViewGestureListener.java" target-dir="src/com/picker/yhck/pickerview/lib"/>
+		<source-file src="src/android/pickerview/lib/MessageHandler.java" target-dir="src/com/picker/yhck/pickerview/lib"/>
+		<source-file src="src/android/pickerview/lib/OnItemSelectedRunnable.java" target-dir="src/com/picker/yhck/pickerview/lib"/>
+		<source-file src="src/android/pickerview/lib/SmoothScrollTimerTask.java" target-dir="src/com/picker/yhck/pickerview/lib"/>
+		<source-file src="src/android/pickerview/lib/WheelView.java" target-dir="src/com/picker/yhck/pickerview/lib"/>
+		
+		<source-file src="src/android/pickerview/listener/CustomListener.java" target-dir="src/com/picker/yhck/pickerview/listener"/>
+		<source-file src="src/android/pickerview/listener/OnDismissListener.java" target-dir="src/com/picker/yhck/pickerview/listener"/>
+		<source-file src="src/android/pickerview/listener/OnItemSelectedListener.java" target-dir="src/com/picker/yhck/pickerview/listener"/>
+		
+		<source-file src="src/android/pickerview/model/IPickerViewData.java" target-dir="src/com/picker/yhck/pickerview/model"/>
+		
+		<source-file src="src/android/pickerview/utils/PickerViewAnimateUtil.java" target-dir="src/com/picker/yhck/pickerview/utils"/>
+		
+		<source-file src="src/android/pickerview/view/BasePickerView.java" target-dir="src/com/picker/yhck/pickerview/view"/>
+		<source-file src="src/android/pickerview/view/WheelOptions.java" target-dir="src/com/picker/yhck/pickerview/view"/>
+		
+		<source-file src="src/android/pickerview/OptionsPickerView.java" target-dir="src/com/picker/yhck/pickerview"/>
+			
+		<source-file src="src/android/anim/pickerview_dialog_scale_in.xml" target-dir="res/anim"/>
+		<source-file src="src/android/anim/pickerview_dialog_scale_out.xml" target-dir="res/anim"/>
+		<source-file src="src/android/anim/pickerview_slide_in_bottom.xml" target-dir="res/anim"/>
+		<source-file src="src/android/anim/pickerview_slide_out_bottom.xml" target-dir="res/anim"/>
+		
+		<source-file src="src/android/assets/province.json" target-dir="assets"/>
+		<source-file src="src/android/libs/gson-2.8.0.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/commons-lang3-3.5.jar" target-dir="libs"/>
+		
+		<source-file src="src/android/drawable/selector_pickerview_btn.xml" target-dir="res/drawable"/>
+		
+		<source-file src="src/android/layout/include_pickerview_topbar.xml" target-dir="res/layout"/>
+		<source-file src="src/android/layout/layout_basepickerview.xml" target-dir="res/layout"/>
+		<source-file src="src/android/layout/pickerview_activity_main.xml" target-dir="res/layout"/>
+		<source-file src="src/android/layout/pickerview_options.xml" target-dir="res/layout"/>
+	
+		<source-file src="src/android/values/picker_attrs.xml" target-dir="res/values"/>
+		<source-file src="src/android/values/picker_colors.xml" target-dir="res/values"/>
+		<source-file src="src/android/values/picker_dimens.xml" target-dir="res/values"/>
+		<source-file src="src/android/values/picker_integers.xml" target-dir="res/values"/>
+		<source-file src="src/android/values/picker_strings.xml" target-dir="res/values"/>
+		<source-file src="src/android/values/picker_styles.xml" target-dir="res/values"/>		
 
-        <resource-file src="src/ios/n_pick_cancle@2x.png" target="/" />
-        <resource-file src="src/ios/n_pick_add@2x.png" target="/" />
-
-        <resource-file src="src/ios/province.json" target="/" />
-    </platform>
+    </platform>  
+     <platform name="ios">
+         <config-file parent="/*" target="config.xml">
+             <feature name="YHPickerViewPlugin">
+                 <param name="ios-package" value="YHPickerViewPlugin"/>
+             </feature>
+         </config-file>
+         
+         <header-file src="src/ios/YHPickerViewPlugin.h" />
+         <source-file src="src/ios/YHPickerViewPlugin.m"/>
+         
+         <header-file src="src/ios/PickView.h" />
+         <source-file src="src/ios/PickView.m"/>
+         
+         <header-file src="src/ios/PopViewController.h" />
+         <source-file src="src/ios/PopViewController.m"/>
+         
+         <resource-file src="src/ios/n_pick_cancle@2x.png" target="/" />
+         <resource-file src="src/ios/n_pick_add@2x.png" target="/" />
+         
+         <resource-file src="src/ios/province.json" target="/" />
+     </platform>
 </plugin>

@@ -8,7 +8,7 @@
 
 #import <Cordova/CDV.h>
 
-@interface YHPickerview : CDVPlugin
+@interface YHPickerViewPlugin : CDVPlugin
 -(void)showPicker:(CDVInvokedUrlCommand*)command;
 -(void)hidePicker:(CDVInvokedUrlCommand*)command;
 -(void)destoryPicker:(CDVInvokedUrlCommand*)command;
